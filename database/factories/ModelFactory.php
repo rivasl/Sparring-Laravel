@@ -27,8 +27,12 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
 });
 
 $factory->define(App\Vehicle::class, function (Faker\Generator $faker) {
+    $faker = new Faker\Generator();
+    $faker->addProvider(new Faker\Provider\Brand($faker));
+    $faker->addProvider(new Faker\Provider\ModelVehicle($faker));
+    
     return [
-        'brand' => 'chevrolet',
-        'model' => 'xxx'
+        'brand'     => $faker->brand,
+        'model'     => $faker->modelveh,
     ];
 });

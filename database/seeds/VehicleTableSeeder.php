@@ -21,6 +21,6 @@ class VehicleTableSeeder extends Seeder
     			'model'		=> $faker->modelveh,
     		]);
 
-    	    // factory(App\Vehicle::class, 10)->create();
+    	    factory(App\Vehicle::class, 20)->create();
     }
 }
