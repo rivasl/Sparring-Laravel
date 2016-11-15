@@ -27,12 +27,15 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
 });
 
 $factory->define(App\Vehicle::class, function (Faker\Generator $faker) {
+    static $brandi;
+
     $faker = new Faker\Generator();
     $faker->addProvider(new Faker\Provider\Brand($faker));
     $faker->addProvider(new Faker\Provider\ModelVehicle($faker));
+    $brandi = $faker->brand;
     
     return [
-        'brand'     => $faker->brand,
-        'model'     => $faker->modelveh,
+        'brand'     => $brandi,
+        'model'     => $faker->modelveh($brandi),
     ];
 });

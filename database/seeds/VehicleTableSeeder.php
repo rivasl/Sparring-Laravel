@@ -12,13 +12,16 @@ class VehicleTableSeeder extends Seeder
      */
     public function run()
     {
+    		static $brandi;
+
     		$faker = new Faker\Generator();
      		$faker->addProvider(new Faker\Provider\Brand($faker));
      		$faker->addProvider(new Faker\Provider\ModelVehicle($faker));
-
+     		
+     		$brandi = $faker->brand;
     		factory(App\Vehicle::class)->create([
-   				'brand' 	=> $faker->brand,
-    			'model'		=> $faker->modelveh,
+   				'brand' 	=> $brandi,
+    			'model'		=> $faker->modelveh($brandi),
     		]);
 
     	    factory(App\Vehicle::class, 20)->create();
