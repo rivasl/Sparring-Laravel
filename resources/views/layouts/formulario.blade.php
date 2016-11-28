@@ -3,6 +3,9 @@
   	{{ csrf_field() }}
     <label for="titulo">Título</label>
     <input type="text" class="form-control" name="titulo" placeholder="título">
+    @if($errors->has('titulo'))
+      <span style="color:red;"> {{ $errors->first('titulo') }}</span>
+    @endif
   </div>
   <div class="form-group">
     <label for="descripcion">Descripción</label>
