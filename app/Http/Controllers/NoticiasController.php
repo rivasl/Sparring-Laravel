@@ -35,8 +35,15 @@ class NoticiasController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request);
         $this->validate($request,['titulo'=>'required', 'descripcion'=>'required']);
+        // dd($request);
+
+        $noticia = new Noticia();
+        $noticia->titulo = $request->titulo;
+        $noticia->descripcion = $request->descripcion;
+        // $noticia->imagen='asd';
+        $noticia->save();
+        dd('Datos guardados!');
     }
 
     /**
