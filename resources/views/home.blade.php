@@ -9,6 +9,7 @@
 
                 <div class="panel-body">
                     @include('layouts.formulario')
+                    @include('layouts.tabla')
                 </div>
             </div>
         </div>

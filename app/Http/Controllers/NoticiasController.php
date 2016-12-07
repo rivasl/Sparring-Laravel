@@ -46,19 +46,16 @@ class NoticiasController extends Controller
         $img = $request->file('urlImg');  //$img = $request->urlImg;
         $file_name = time().'_'.$img->getClientOriginalName();
 
-/*echo "request->urlImg: ".$request->urlImg."<br><br>";        
-echo "<br><br>file_name : ".$file_name."<br><br>";
-$path = $request->urlImg->path();
-echo "<br><br>path : ".$path."<br><br>";
-var_dump($img);
-*/
-
         Storage::disk('imgNoticias')->put($file_name, file_get_contents($img->getRealPath()));
 
         $noticia->urlImg = $file_name;
 
-        $noticia->save();
-        dd('Datos guardados!');
+		if ($noticia->save()){
+			return back()->with('succces_msg','Datos guardados');
+		}
+		else{
+			return back()->with('error_msg','Hubo un error al guardar los datos');
+		}
     }
 
     /**
