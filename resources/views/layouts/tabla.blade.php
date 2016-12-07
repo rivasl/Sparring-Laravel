@@ -7,11 +7,11 @@
 		</thead>
 		<tbody>
 		@foreach($noticias as $n)
-			<tr>titulo
+			<tr>
 				<td>{{ $n->titulo }}</td>
 				<td>{{ $n->descripcion }}</td>
 				<td>
-					<img src="imgNoticias/{{ $n->urlImg }}" class="img-responsive" alt="Responsive image">
+					<img src="imgNoticias/{{ $n->urlImg }}" class="img-responsive" alt="Responsive image" style="max-width: 100px;">
 				</td>
 			</tr>
 		@endforeach		
