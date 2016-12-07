@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Noticia;
+use Input;
+Use Storage;
 
 class NoticiasController extends Controller
 {
@@ -41,7 +43,20 @@ class NoticiasController extends Controller
         $noticia = new Noticia();
         $noticia->titulo = $request->titulo;
         $noticia->descripcion = $request->descripcion;
-        // $noticia->imagen='asd';
+        $img = $request->file('urlImg');  //$img = $request->urlImg;
+        $file_name = time().'_'.$img->getClientOriginalName();
+
+/*echo "request->urlImg: ".$request->urlImg."<br><br>";        
+echo "<br><br>file_name : ".$file_name."<br><br>";
+$path = $request->urlImg->path();
+echo "<br><br>path : ".$path."<br><br>";
+var_dump($img);
+*/
+
+        Storage::disk('imgNoticias')->put($file_name, file_get_contents($img->getRealPath()));
+
+        $noticia->urlImg = $file_name;
+
         $noticia->save();
         dd('Datos guardados!');
     }

@@ -17,7 +17,7 @@ class CreateNoticiasTable extends Migration
             $table->increments('id');
             $table->string('titulo');
             $table->string('descripcion');
-            $table->binary('imagen')->nullable();
+            $table->string('urlImg')->nullable();
             $table->timestamps();
         });
     }
