@@ -14,14 +14,14 @@
       <label for="titulo">Título</label>
       <input type="text" class="form-control" name="titulo" value="{{ $noticia->titulo }}">
       @if($errors->has('titulo'))
-        <span>{{ $errors->first('titulo') }}</span>
+        <div class="alert alert-danger" role="alert">{{ $errors->first('titulo') }}</div>
       @endif
     </div>
     <div class="form-group">
       <label for="descripcion">Descripción</label>
       <textarea type="text" class="form-control" name="descripcion" >{{ $noticia->descripcion }}</textarea>
       @if($errors->has('descripcion'))
-        <span>{{ $errors->first('descripcion') }}</span>
+        <div class="alert alert-danger" role="alert">{{ $errors->first('descripcion') }}</div>
       @endif
     </div>
     <div class="form-group">
