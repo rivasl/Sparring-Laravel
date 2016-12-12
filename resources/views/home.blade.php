@@ -8,8 +8,12 @@
                 <div class="panel-heading">Dashboard</div>
 
                 <div class="panel-body">
-                    @include('layouts.formulario')
-                    @include('layouts.tabla')
+                    @if(isset($edit))
+                        @include('layouts.modificar')
+                    @else
+                        @include('layouts.formulario')
+                        @include('layouts.tabla')
+                    @endif
                 </div>
             </div>
         </div>

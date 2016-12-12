@@ -38,7 +38,6 @@ class NoticiasController extends Controller
     public function store(Request $request)
     {
         $this->validate($request,['titulo'=>'required', 'descripcion'=>'required']);
-        // dd($request);
 
         $noticia = new Noticia();
         $noticia->titulo = $request->titulo;
@@ -77,8 +76,9 @@ class NoticiasController extends Controller
      */
     public function edit($id)
     {
-        //
-    }
+		$noticia = Noticia::find($id);
+		return view('home')->with(['edit'=>'true', 'noticia'=>$noticia]);
+	}
 
     /**
      * Update the specified resource in storage.
@@ -89,7 +89,25 @@ class NoticiasController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request,['titulo'=>'required', 'descripcion'=>'required']);
+
+        $noticia = Noticia::find($id);
+        $noticia->titulo = $request->titulo;
+        $noticia->descripcion = $request->descripcion;
+        $img = $request->file('urlImg'); 
+ 		$file_name = time().'_'.$img->getClientOriginalName();
+
+        Storage::disk('imgNoticias')->put($file_name, file_get_contents($img->getRealPath()));
+        Storage::disk('imgNoticias')->delete($request->nombreImg);
+
+        $noticia->urlImg = $file_name;
+
+		if ($noticia->save()){
+			return redirect('home');
+		}
+		else{
+			return back()->with('error_msg','Hubo un error al guardar los datos');
+		}
     }
 
     /**

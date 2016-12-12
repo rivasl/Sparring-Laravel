@@ -1,3 +1,4 @@
+
 <table class="table table-hover">
 	@if(isset($noticias))
 		<thead>
@@ -11,7 +12,11 @@
 				<td>{{ $n->titulo }}</td>
 				<td>{{ $n->descripcion }}</td>
 				<td>
-					<img src="imgNoticias/{{ $n->urlImg }}" class="img-responsive" alt="Responsive image" style="max-width: 100px;">
+					<img src="imgNoticias/{{ $n->urlImg }}" class="img-responsive" alt="Responsive image" style="max-width: 50px;">
+				</td>
+				<td>
+					<a href="noticias/{{ $n->id }}/edit" class="btn btn-warning btn-xs">Modificar</a>
+					<a href="noticias/{{ $n->id }}" class="btn btn-danger btn-xs">Eliminar</a>
 				</td>
 			</tr>
 		@endforeach		
