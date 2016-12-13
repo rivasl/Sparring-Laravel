@@ -65,7 +65,7 @@ class NoticiasController extends Controller
      */
     public function show($id)
     {
-        //
+        dd('Show');
     }
 
     /**
@@ -118,6 +118,7 @@ class NoticiasController extends Controller
      */
     public function destroy($id)
     {
-        //
+		Noticia::destroy($id);
+		return back();
     }
 }

@@ -16,7 +16,11 @@
 				</td>
 				<td>
 					<a href="noticias/{{ $n->id }}/edit" class="btn btn-warning btn-xs">Modificar</a>
-					<a href="noticias/{{ $n->id }}" class="btn btn-danger btn-xs">Eliminar</a>
+					<form method="POST" action="{{ route('noticias.destroy', $n->id) }}">
+						{{ csrf_field() }}
+						<input name="_method" type="hidden" value="DELETE">
+						<input type="submit" class="btn btn-danger btn-xs" value="Eliminar"></input>
+					</form>
 				</td>
 			</tr>
 		@endforeach		
