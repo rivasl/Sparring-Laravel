@@ -38,7 +38,6 @@ class NoticiasController extends Controller
     public function store(Request $request)
     {
         $this->validate($request,['titulo'=>'required', 'descripcion'=>'required']);
-        // dd($request);
 
         $noticia = new Noticia();
         $noticia->titulo = $request->titulo;
@@ -46,19 +45,16 @@ class NoticiasController extends Controller
         $img = $request->file('urlImg');  //$img = $request->urlImg;
         $file_name = time().'_'.$img->getClientOriginalName();
 
-/*echo "request->urlImg: ".$request->urlImg."<br><br>";        
-echo "<br><br>file_name : ".$file_name."<br><br>";
-$path = $request->urlImg->path();
-echo "<br><br>path : ".$path."<br><br>";
-var_dump($img);
-*/
-
         Storage::disk('imgNoticias')->put($file_name, file_get_contents($img->getRealPath()));
 
         $noticia->urlImg = $file_name;
 
-        $noticia->save();
-        dd('Datos guardados!');
+		if ($noticia->save()){
+			return back()->with('succces_msg','Datos guardados');
+		}
+		else{
+			return back()->with('error_msg','Hubo un error al guardar los datos');
+		}
     }
 
     /**
@@ -80,8 +76,9 @@ var_dump($img);
      */
     public function edit($id)
     {
-        //
-    }
+		$noticia = Noticia::find($id);
+		return view('home')->with(['edit'=>'true', 'noticia'=>$noticia]);
+	}
 
     /**
      * Update the specified resource in storage.
@@ -92,7 +89,25 @@ var_dump($img);
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request,['titulo'=>'required', 'descripcion'=>'required']);
+
+        $noticia = Noticia::find($id);
+        $noticia->titulo = $request->titulo;
+        $noticia->descripcion = $request->descripcion;
+        $img = $request->file('urlImg'); 
+ 		$file_name = time().'_'.$img->getClientOriginalName();
+
+        Storage::disk('imgNoticias')->put($file_name, file_get_contents($img->getRealPath()));
+        Storage::disk('imgNoticias')->delete($request->nombreImg);
+
+        $noticia->urlImg = $file_name;
+
+		if ($noticia->save()){
+			return redirect('home');
+		}
+		else{
+			return back()->with('error_msg','Hubo un error al guardar los datos');
+		}
     }
 
     /**
