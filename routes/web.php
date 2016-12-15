@@ -21,3 +21,5 @@ Route::get('/home', 'HomeController@index');
 
 // Route::get('/noticias', 'NoticiasController@index');
 Route::resource('/noticias', 'NoticiasController');
+
+Route::resource('/users', 'UserController');

@@ -15,6 +15,7 @@ class UserTableSeeder extends Seeder
         factory(App\User::class)->create([
     		'first_name' 	=> 'Luis',
     		'last_name' 	=> 'Rivas',
+            'twitter'       => 'luitter',
     		'role'		 	=> 'admin',
             'password'      => $password ?: $password = bcrypt('123'),
     		'email'			=> 'luis@gmail.com'

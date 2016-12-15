@@ -11,8 +11,12 @@
                     @if(isset($edit))
                         @include('layouts.modificar')
                     @else
-                        @include('layouts.formulario')
-                        @include('layouts.tabla')
+                        @if(isset($listar))
+                            @include('layouts.users.tablaUsuarios')
+                        @else
+                            @include('layouts.formulario')
+                            @include('layouts.tabla')
+                        @endif    
                     @endif
                 </div>
             </div>

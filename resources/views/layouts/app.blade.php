@@ -26,24 +26,23 @@
             <div class="container">
                 <div class="navbar-header">
 
-                    <!-- Collapsed Hamburger -->
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
-                        <span class="sr-only">Toggle Navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-
                     <!-- Branding Image -->
                     <a class="navbar-brand" href="{{ url('/') }}">
                         {{ config('app.name', 'Laravel') }}
                     </a>
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                      <ul class="nav navbar-nav">
+                        <li class="{{ ($apuntador=='noticias') ? 'active' : '' }}"><a href="/home"   >Noticias</a></li>
+                        <li class="{{ ($apuntador=='usuarios') ? 'active' : '' }}"><a href="/users" >Usuarios{{$apuntador}}</a></li>
+                      </ul>
+                    </div><!-- /.navbar-collapse -->
                 </div>
 
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
-                    <ul class="nav navbar-nav">
-                        &nbsp;
+                    <ul class="nav navbar-nav">&nbsp;
+
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -78,7 +77,6 @@
                 </div>
             </div>
         </nav>
-
         @yield('content')
     </div>
 
@@ -86,3 +84,4 @@
     <script src="/js/app.js"></script>
 </body>
 </html>
+

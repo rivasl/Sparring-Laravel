@@ -25,6 +25,6 @@ class HomeController extends Controller
     public function index()
     {
         $noticias = Noticia::all();
-        return view('home')->with(['noticias' => $noticias]);
+        return view('home')->with(['noticias' => $noticias, 'apuntador'=>'noticias']);
     }
 }
