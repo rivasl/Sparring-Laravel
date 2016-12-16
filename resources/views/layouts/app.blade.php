@@ -1,3 +1,7 @@
+<?php 
+ if(!isset($apuntador)) $apuntador='noticias';
+?> 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -30,13 +34,18 @@
                     <a class="navbar-brand" href="{{ url('/') }}">
                         {{ config('app.name', 'Laravel') }}
                     </a>
-                    <!-- Collect the nav links, forms, and other content for toggling -->
-                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                      <ul class="nav navbar-nav">
-                        <li class="{{ ($apuntador=='noticias') ? 'active' : '' }}"><a href="/home"   >Noticias</a></li>
-                        <li class="{{ ($apuntador=='usuarios') ? 'active' : '' }}"><a href="/users" >Usuarios{{$apuntador}}</a></li>
-                      </ul>
-                    </div><!-- /.navbar-collapse -->
+
+                    @if (Auth::guest())
+                        
+                    @else
+                        <!-- Collect the nav links, forms, and other content for toggling -->
+                        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                          <ul class="nav navbar-nav">
+                            <li class="{{ ($apuntador=='noticias') ? 'active' : '' }}"><a href="/home"  >Noticias</a></li>
+                            <li class="{{ ($apuntador=='usuarios') ? 'active' : '' }}"><a href="/users" >Usuarios</a></li>
+                          </ul>
+                        </div><!-- /.navbar-collapse -->
+                    @endif
                 </div>
 
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">

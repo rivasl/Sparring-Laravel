@@ -1,17 +1,11 @@
 <div name ="tablausuarios" style="width: 450px; margin: 50px auto;">
-	<nav class="navbar navbar-default" role="navigation">
-  		<div class="container-fluid">
-  			<div class="navbar-header">
-				<a class="navbar-brand" href="#">CodeJobs</a>
-  			</div>
-    		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      			<ul class="nav navbar-nav">
-        			<li class="active"><a href="/users">Todos</a></li>
-        			<li><a href="/users/create">Nuevo</a></li>
-        		</ul>
-        	</div>
-        </div>
-    </nav>
+	
+	<div class="container-fluid">
+    	<ul class="nav nav-tabs">
+    	  <li role="presentation" class="active"><a href="/users">Todos</a></li>
+    	  <li role="presentation"><a href="/users/create">Nuevo</a></li>
+    	</ul>
+    </div>
 
 	<div class="panel panel-success">
   		<div class="panel-heading">
