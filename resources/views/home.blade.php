@@ -14,8 +14,16 @@
                         @if(isset($listar))
                             @include('layouts.users.tablaUsuarios')
                         @else
-                            @include('layouts.formulario')
-                            @include('layouts.tabla')
+                           @if(isset($listarvehiculos))
+                               @include('layouts.vehicles.tablaVehiculos')
+                           @else
+                               @if(isset($mostrarvehiculo))
+                                   @include('layouts.vehicles.show')  
+                               @else
+                                   @include('layouts.formulario')
+                                   @include('layouts.tabla')
+                               @endif
+                           @endif   
                         @endif    
                     @endif
                 </div>

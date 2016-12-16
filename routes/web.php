@@ -19,7 +19,11 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index');
 
-// Route::get('/noticias', 'NoticiasController@index');
+// Route::get('/noticias',les 'NoticiasController@index');
 Route::resource('/noticias', 'NoticiasController');
 
 Route::resource('/users', 'UserController');
+
+Route::resource('/vehicles', 'VehicleController');
+
+Route::resource('/vehicles/show/{id}', 'VehicleController@show');
