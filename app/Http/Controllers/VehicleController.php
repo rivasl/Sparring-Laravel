@@ -65,7 +65,8 @@ class VehicleController extends Controller
     public function show($id)
     {
         $vehicle = Vehicle::find($id);
-        return view('home')->with(['mostrarvehiculo'=>'true', 'vehicle'=>$vehicle]);
+        // return view('home')->with(['mostrarvehiculo'=>'true', 'vehicle'=>$vehicle]);
+        return view('layouts.vehicles.edit')->with(['mostrarvehiculo'=>'true', 'vehicle'=>$vehicle]);
     }
 
     /**
@@ -94,6 +95,12 @@ class VehicleController extends Controller
         $vehicle = Vehicle::find($id);
         $vehicle->brand = $request->brand;
         $vehicle->model = $request->model;
+
+        /*  Otra forma de hacerlo --------------------
+        $vehicle = User::find($id);
+        $vehicle->name = Input::get('name');
+        $vehicle->twitter = Input::get('twitter'); -----*/
+
         $img = $request->file('urlImg'); 
         $file_name = time().'_'.$img->getClientOriginalName();
 
@@ -102,12 +109,23 @@ class VehicleController extends Controller
 
         $vehicle->urlImg = $file_name;
 
+        /*      
         if ($vehicle->save()){
             return redirect('home');
         }
         else{
             return back()->with('error_msg','Hubo un error al guardar los datos');
+        }*/
+
+        if ($vehicle->save()) {
+            Session::flash('message','Actualizado correctamente!');
+            Session::flash('class','success');
+        } else {
+            Session::flash('message','Ha ocurrido un error!');
+            Session::flash('class','danger');
         }
+
+        return Redirect::to('vehicles/edit/'.$id);
     }
 
     /**

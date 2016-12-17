@@ -25,5 +25,4 @@ Route::resource('/noticias', 'NoticiasController');
 Route::resource('/users', 'UserController');
 
 Route::resource('/vehicles', 'VehicleController');
-
 Route::resource('/vehicles/show/{id}', 'VehicleController@show');
