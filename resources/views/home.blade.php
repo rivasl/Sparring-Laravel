@@ -8,19 +8,29 @@
                 <div class="panel-heading">Dashboard</div>
 
                 <div class="panel-body">
-                    @if(isset($edit))
+
+                    @if(isset($edit)) <!-- modificar noticia -->
                         @include('layouts.modificar')
-                    @else
-                        @if(isset($listar))
-                            @include('layouts.users.tablaUsuarios')
-                        @else
-                            @include('layouts.formulario')
-                            @include('layouts.tabla')
-                        @endif    
                     @endif
+                    
+                    @if(isset($listar)) <!-- Listar usuarios -->
+                        @include('layouts.users.tablaUsuarios')
+                    @endif
+                    
+                    @if(isset($apuntador) && $apuntador == 'noticias') <!-- Mostrar noticias y formulario de creación -->
+                        @include('layouts.formulario')
+                        @include('layouts.tabla')
+                    @endif
+
+                    @if(isset($crear_usuario))
+                        @include('layouts.users.create')
+                    @endif
+
                 </div>
             </div>
         </div>
     </div>
 </div>
 @endsection
+
+                    

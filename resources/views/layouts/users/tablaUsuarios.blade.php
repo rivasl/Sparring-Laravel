@@ -1,4 +1,4 @@
-<div name ="tablausuarios" style="width: 450px; margin: 50px auto;">
+<div name ="tablausuarios" style="width: 700px; margin: 25px auto;">
 	
 	<div class="container-fluid">
     	<ul class="nav nav-tabs">
@@ -18,6 +18,7 @@
 					<tr>
 						<th>Id</th>
 						<th>Nombre</th>
+						<th>Email</th>
 						<th>Twitter</th>
 						<th>Acciones</th>
 					</tr>
@@ -27,6 +28,7 @@
 						<tr>
 							<td>{{ $user->id }}</td>
 							<td>{{ $user->FullName }}</td>
+							<td>{{ $user->email }}</td>
 							<td>{{ $user->twitter }}</td>
 							<td>
 								<a href="/users/show/{{ $user->id }}"><span class="label label-info">Ver</span></a>
