@@ -51,10 +51,10 @@ class UserController extends Controller
             // return back()->with('succces_msg','Datos guardados');
             // return view('home')->with('succces_msg','Datos guardados');
             $users = User::all();
-            return view('home')->with(['message'=>'Datos guardados', 'users' => $users, 'listar'=>'true', 'apuntador'=>'usuarios']);
+            return back()->with(['class'=>'success', 'message'=>'Datos guardados', 'users' => $users, 'listar'=>'true', 'apuntador'=>'usuarios']);
         }
         else{
-            return back()->with('error_msg','Hubo un error al guardar los datos');
+            return back()->with(['class'=>'danger', 'message'=>'Hubo un error al guardar los datos']);
         }
     }
 
