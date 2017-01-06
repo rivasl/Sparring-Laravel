@@ -7,6 +7,8 @@ use App\User;
 
 class UserController extends Controller
 {
+    static $unoSolo;
+
     /**
      * Display a listing of the resource.
      *
@@ -66,7 +68,8 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        //
+        $user = User::find($id);
+        return view('home')->with(['user' => $user, 'mostrar_usuario'=>'true']);
     }
 
     /**

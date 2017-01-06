@@ -31,7 +31,7 @@
 							<td>{{ $user->email }}</td>
 							<td>{{ $user->twitter }}</td>
 							<td>
-								<a href="/users/show/{{ $user->id }}"><span class="label label-info">Ver</span></a>
+								<a href="/users/{{ $user->id }}"><span class="label label-info">Ver</span></a>
 								<a href="/users/edit/{{ $user->id }}"><span class="label label-success">Editar</span></a>
 								<a href="{{ url('/users/destroy',$user->id) }}"><span class="label label-danger">Eliminar</span></a>
 							</td>

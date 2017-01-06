@@ -26,6 +26,10 @@
                         @include('layouts.users.create')
                     @endif
 
+                    @if(isset($mostrar_usuario))
+                        @include('layouts.users.show')
+                    @endif
+
                 </div>
             </div>
         </div>
