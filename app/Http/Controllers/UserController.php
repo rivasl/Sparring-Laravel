@@ -80,8 +80,10 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user = User::find($id);
+        return view('home')->with(['user' => $user, 'edit_usuario'=>'true']);
     }
+
 
     /**
      * Update the specified resource in storage.
@@ -92,7 +94,23 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request,['first_name'=>'required', 'last_name'=>'required', 'email'=>'required', 'twitter'=>'required']);
+        $usuario = User::find($id);
+        $usuario->first_name = $request->first_name;
+        $usuario->last_name = $request->last_name;
+        $usuario->email = $request->email;
+        $usuario->twitter = $request->twitter;
+        $usuario->remember_token = str_random(10);
+
+        if ($usuario->save()){
+            // return back()->with('succces_msg','Datos guardados');
+            // return view('home')->with('succces_msg','Datos guardados');
+            $users = User::all();
+            return back()->with(['class'=>'success', 'message'=>'Datos actualizados', 'users' => $users, 'listar'=>'true', 'apuntador'=>'usuarios']);
+        }
+        else{
+            return back()->with(['class'=>'danger', 'message'=>'Hubo un error al actualizar los datos']);
+        }
     }
 
     /**

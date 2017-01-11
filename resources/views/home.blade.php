@@ -30,6 +30,9 @@
                         @include('layouts.users.show')
                     @endif
 
+                    @if(isset($edit_usuario))
+                        @include('layouts.users.edit')
+                    @endif
                 </div>
             </div>
         </div>
