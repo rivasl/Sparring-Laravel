@@ -121,6 +121,13 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user = User::find($id);
+
+        if ($user->delete()) {
+            return back()->with(['class'=>'success', 'message'=>'Eliminado correctamente!', 'listar'=>'true', 'apuntador'=>'usuarios']);
+        }
+        else{
+            return back()->with(['class'=>'danger', 'message'=>'Hubo un error al eliminar el usuario']);
+        }
     }
 }
