@@ -53,6 +53,11 @@ return [
             'root' => public_path('imgNoticias'),
         ],
 
+        'imgVehicles' => [
+            'driver' => 'local',
+            'root' => public_path('imgVehicles'),
+        ],
+
         'public' => [
             'driver' => 'local',
             'root' => storage_path('app/public'),

@@ -33,6 +33,19 @@
                     @if(isset($edit_usuario))
                         @include('layouts.users.edit')
                     @endif
+
+
+					@if(isset($listarvehiculos))
+                        @include('layouts.vehicles.tablaVehiculos')
+                    @else
+                               @if(isset($mostrarvehiculo))
+                                   @include('layouts.vehicles.show')  
+                               @else
+                                   @include('layouts.formulario')
+                                   @include('layouts.tabla')
+                               @endif
+                           @endif
+
                 </div>
             </div>
         </div>
