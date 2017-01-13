@@ -13,13 +13,13 @@
                         @include('layouts.modificar')
                     @endif
                     
-                    @if(isset($listar)) <!-- Listar usuarios -->
-                        @include('layouts.users.tablaUsuarios')
-                    @endif
-                    
                     @if(isset($apuntador) && $apuntador == 'noticias') <!-- Mostrar noticias y formulario de creación -->
                         @include('layouts.formulario')
                         @include('layouts.tabla')
+                    @endif
+
+                    @if(isset($listar)) <!-- Listar usuarios -->
+                        @include('layouts.users.tablaUsuarios')
                     @endif
 
                     @if(isset($crear_usuario))
@@ -34,18 +34,13 @@
                         @include('layouts.users.edit')
                     @endif
 
-
 					@if(isset($listarvehiculos))
                         @include('layouts.vehicles.tablaVehiculos')
                     @else
-                               @if(isset($mostrarvehiculo))
-                                   @include('layouts.vehicles.show')  
-                               @else
-                                   @include('layouts.formulario')
-                                   @include('layouts.tabla')
-                               @endif
-                           @endif
-
+                       @if(isset($mostrarvehiculo))
+                           @include('layouts.vehicles.show')  
+                       @endif
+                    @endif
                 </div>
             </div>
         </div>

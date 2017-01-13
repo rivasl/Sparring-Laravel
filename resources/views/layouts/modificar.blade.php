@@ -26,7 +26,7 @@
     </div>
     <div class="form-group">
       <label for="urlImg">File input</label>
-      <input type="file" id="urlImg" name="urlImg">
+      <input type="file" id="urlImg" name="urlImg" value="{{ $noticia->urlImg }}>
       <p class="help-block">Archivo a subir.</p>
     </div>
     <button type="submit" class="btn btn-warning">Modificar</button>
