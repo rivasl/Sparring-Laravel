@@ -15,15 +15,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes();
-
+/*Auth::routes();
 Route::get('/home', 'HomeController@index');
-
 Route::resource('/noticias', 'NoticiasController');
-
 Route::resource('/users', 'UserController');
-
 Route::get('/users/destroy/{id}', 'UserController@destroy');
-
 Route::resource('/vehicles', 'VehicleController');
 Route::resource('/vehicles/show/{id}', 'VehicleController@show');
+*/

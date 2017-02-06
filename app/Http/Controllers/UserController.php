@@ -3,11 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use App\User;
 
 class UserController extends Controller
 {
-    static $unoSolo;
 
     /**
      * Display a listing of the resource.
@@ -16,20 +16,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::all();
-        // $users = User::orderBy('id','DESC')->get();
-        // return View::make('users.index')->with('users',$users);
-        return view('home')->with(['users' => $users, 'listar'=>'true', 'apuntador'=>'usuarios']);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        return view('home')->with(['crear_usuario'=>'true', 'apuntador'=>'usuarios']);
+        $users = User::all()->toArray();
+        return response()->json($users);
     }
 
     /**
@@ -40,23 +28,22 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request,['first_name'=>'required', 'last_name'=>'required', 'email'=>'required', 'twitter'=>'required', 'password'=>'required']);
-        $usuario = new User();
-        $usuario->first_name = $request->first_name;
-        $usuario->last_name = $request->last_name;
-        $usuario->email = $request->email;
-        $usuario->twitter = $request->twitter;
-        $usuario->password = bcrypt($request->password);
-        $usuario->remember_token = str_random(10);
-
-        if ($usuario->save()){
-            // return back()->with('succces_msg','Datos guardados');
-            // return view('home')->with('succces_msg','Datos guardados');
-            $users = User::all();
-            return back()->with(['class'=>'success', 'message'=>'Datos guardados', 'users' => $users, 'listar'=>'true', 'apuntador'=>'usuarios']);
-        }
-        else{
-            return back()->with(['class'=>'danger', 'message'=>'Hubo un error al guardar los datos']);
+        try {
+            $user = new User([
+                'first_name' => $request->input('first_name'),
+                'last_name' => $request->input('last_name'),
+                'email' => $request->input('email'),
+                'twitter' => $request->input('twitter'),
+                'password' => bcrypt($request->input('password')),
+            ]);
+            $user->save();
+            Log::info("User stored");
+            return response()->json(['status'=>true, 'User stored'], 200);
+        
+        } catch (\Exception $e) {
+            Log::critical("Could not store user: {$e->getCode()} , {$e->getLine()} , {$e->getMessage()}");
+            // return response("Could not store user: {$e->getCode()} , {$e->getLine()} , {$e->getMessage()}");
+            return response('Something bad',500);
         }
     }
 
@@ -68,22 +55,20 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        $user = User::find($id);
-        return view('home')->with(['user' => $user, 'mostrar_usuario'=>'true']);
-    }
+        try {
+            $user = User::find($id);
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        $user = User::find($id);
-        return view('home')->with(['user' => $user, 'edit_usuario'=>'true']);
-    }
+            if (!$user){
+                return response()->json(['This id doesnt exist'],404);
+            }
 
+            return response()->json($user,200);
+
+        } catch (Exception $e) {
+            Log::critical("Could not store user: {$e->getCode()} , {$e->getLine()} , {$e->getMessage()}");
+            return response('Something bad',500);
+        }
+    }
 
     /**
      * Update the specified resource in storage.
@@ -94,22 +79,15 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->validate($request,['first_name'=>'required', 'last_name'=>'required', 'email'=>'required', 'twitter'=>'required']);
-        $usuario = User::find($id);
-        $usuario->first_name = $request->first_name;
-        $usuario->last_name = $request->last_name;
-        $usuario->email = $request->email;
-        $usuario->twitter = $request->twitter;
-        $usuario->remember_token = str_random(10);
+        try {
+            $user = User::find($id);
+            $user->update($request->all());
+            Log::info("User updated"); 
+            return response()->json(['status'=>true, 'User updated'], 200);
 
-        if ($usuario->save()){
-            // return back()->with('succces_msg','Datos guardados');
-            // return view('home')->with('succces_msg','Datos guardados');
-            $users = User::all();
-            return back()->with(['class'=>'success', 'message'=>'Datos actualizados', 'users' => $users, 'listar'=>'true', 'apuntador'=>'usuarios']);
-        }
-        else{
-            return back()->with(['class'=>'danger', 'message'=>'Hubo un error al actualizar los datos']);
+        } catch (Exception $e) {
+            Log::critical("Could not update user: {$e->getCode()} , {$e->getLine()} , {$e->getMessage()}");
+            return response('Something bad',500);
         }
     }
 
@@ -119,15 +97,23 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    /**/
     public function destroy($id)
     {
-        $user = User::find($id);
+        try {
+            $user = User::find($id);   
 
-        if ($user->delete()) {
-            return back()->with(['class'=>'success', 'message'=>'Eliminado correctamente!', 'listar'=>'true', 'apuntador'=>'usuarios']);
-        }
-        else{
-            return back()->with(['class'=>'danger', 'message'=>'Hubo un error al eliminar el usuario']);
+            if (!$user){
+                return response()->json(['This id doesnt exist'],404);
+            }
+
+            $user->delete();
+            Log::info("User deleted");
+            return response()->json(['status'=>true, 'User deleted'],200);
+
+        } catch (Exception $e) {
+            Log::critical("Could not delete user: {$e->getCode()} , {$e->getLine()} , {$e->getMessage()}");
+            return response('Something bad',500);
         }
     }
-}
+ }
