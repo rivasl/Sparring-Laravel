@@ -52,6 +52,20 @@
                             </div>
                         </div>
 
+                        <div class="form-group{{ $errors->has('twitter') ? ' has-error' : '' }}">
+                            <label for="twitter" class="col-md-4 control-label">Twitter</label>
+
+                            <div class="col-md-6">
+                                <input id="twitter" type="text" class="form-control" name="twitter" value="{{ old('twitter') }}" required>
+
+                                @if ($errors->has('twitter'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('twitter') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
                         <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
                             <label for="password" class="col-md-4 control-label">Password</label>
 
