@@ -19,7 +19,13 @@ class Vehicle extends Model
      * @var array
      */
     protected $fillable = [
-        'brand', 'model',
+        'brand', 'model', 'plate','owner_id'
     ];
+
+    // Relación
+    public function owner()
+    {
+        return $this->belongsTo('App\User', 'foreign_key', 'id');
+    }
 
 }

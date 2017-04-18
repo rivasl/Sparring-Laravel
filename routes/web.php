@@ -27,3 +27,4 @@ Route::get('/users/destroy/{id}', 'UserController@destroy');
 
 Route::resource('/vehicles', 'VehicleController');
 Route::resource('/vehicles/show/{id}', 'VehicleController@show');
+

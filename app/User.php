@@ -30,4 +30,10 @@ class User extends Authenticatable
     public function getFullNameAttribute(){
         return $this->first_name . ' ' . $this->last_name;
     }
+
+    // Relación
+    public function vehicles()
+    {
+        return $this->hasMany('App\Vehicle', 'owner_id');
+    }
 }

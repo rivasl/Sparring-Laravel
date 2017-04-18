@@ -19,7 +19,35 @@
         @else
           <p>No existe información para éste usuario.</p>
         @endif
-        <a href="/users" class="btn btn-default">Regresar</a>
+        
+        <div class="panel panel-success">
+            <div class="text-center">
+              <h3>Vehículos registrados</h3>
+            </div>
+
+            <div class="panel-body">
+              <table class="table">
+              <thead>
+                <tr>
+                  <th>Placa</th>
+                  <th>Marca</th>
+                  <th>Modelo</th>
+                </tr>
+              </thead>
+              <tbody>
+                @foreach($vehicles as $vehicle)
+                  <tr>
+                    <td>{{ $vehicle->plate }}</td>
+                    <td>{{ $vehicle->brand }}</td>
+                    <td>{{ $vehicle->model }}</td>
+                  </tr>
+                @endforeach
+              </tbody>
+            </table>
+            </div>
+          </div>
+
+          <a href="/users" class="btn btn-default">Regresar</a>
 		</div>
 	</div>
 </div>

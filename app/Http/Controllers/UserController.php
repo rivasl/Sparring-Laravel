@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use App\Vehicle;
 
 class UserController extends Controller
 {
@@ -69,7 +70,14 @@ class UserController extends Controller
     public function show($id)
     {
         $user = User::find($id);
-        return view('home')->with(['user' => $user, 'mostrar_usuario'=>'true']);
+             
+        // vehículos de este usuario
+/*        foreach($user->vehiculos as $vehiculo){
+            var_dump($vehiculo->brand);
+        }*/
+        $vehiculos= User::find($id)->vehicles;
+
+        return view('home')->with(['user' => $user, 'vehicles' => $vehiculos, 'mostrar_usuario'=>'true']);
     }
 
     /**
@@ -130,4 +138,5 @@ class UserController extends Controller
             return back()->with(['class'=>'danger', 'message'=>'Hubo un error al eliminar el usuario']);
         }
     }
+
 }

@@ -33,9 +33,13 @@ $factory->define(App\Vehicle::class, function (Faker\Generator $faker) {
     $faker->addProvider(new Faker\Provider\Brand($faker));
     $faker->addProvider(new Faker\Provider\ModelVehicle($faker));
     $brandi = $faker->brand;
+    $owner_id = rand(1, 11);
+    $plate = strtoupper($faker->randomLetter.$faker->randomLetter.$faker->randomNumber(3).$faker->randomLetter.$faker->randomLetter);
     
     return [
         'brand'     => $brandi,
         'model'     => $faker->modelveh($brandi),
+        'plate'     => $plate,
+        'owner_id'  => $owner_id,
     ];
 });

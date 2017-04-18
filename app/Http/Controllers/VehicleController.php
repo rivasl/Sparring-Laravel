@@ -36,11 +36,13 @@ class VehicleController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request,['brand'=>'required', 'model'=>'required']);
+        $this->validate($request,['brand'=>'required', 'model'=>'required', 'plate' =>'required', 'owner_id'=>'required']);
 
         $vehicle = new Vehicle();
         $vehicle->brand = $request->brand;
         $vehicle->model = $request->model;
+        $vehicle->plate = $request->plate;
+        $vehicle->owner_id = $request->owner_id;
         $img = $request->file('urlImg');  //$img = $request->urlImg;
         $file_name = time().'_'.$img->getClientOriginalName();
 
@@ -95,6 +97,8 @@ class VehicleController extends Controller
         $vehicle = Vehicle::find($id);
         $vehicle->brand = $request->brand;
         $vehicle->model = $request->model;
+        $vehicle->plate = $request->plate;
+        $vehicle->owner_id = $request->owner_id;
 
         /*  Otra forma de hacerlo --------------------
         $vehicle = User::find($id);

@@ -17,6 +17,8 @@ class CreateVehiclesTable extends Migration
             $table->increments('id');
             $table->string('brand');
             $table->string('model');
+            $table->string('plate');
+            $table->string('owner_id');
             $table->timestamps();
         });
     }
