@@ -16,6 +16,7 @@ class UserTableSeeder extends Seeder
     		'first_name' 	=> 'Luis',
     		'last_name' 	=> 'Rivas',
             'twitter'       => 'luitter',
+            'birthdate'     => '1978/01/23',
     		'role'		 	=> 'admin',
             'password'      => $password ?: $password = bcrypt('123'),
     		'email'			=> 'luis@gmail.com'

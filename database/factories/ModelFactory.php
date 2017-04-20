@@ -18,6 +18,7 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
     return [
         'first_name' => $faker->firstName($gender = null|'male'|'female'),
         'last_name' => $faker->lastName,
+        'birthdate' => $faker->dateTimeBetween('-45 years', '-15 years')->format('Y-m-d'),
         'email' => $faker->unique()->safeEmail,
         'twitter' => $faker->unique()->word,
         'role' => $faker->randomElement(['user','editor','admin']),
