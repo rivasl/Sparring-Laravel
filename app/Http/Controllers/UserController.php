@@ -45,7 +45,7 @@ class UserController extends Controller
         $usuario = new User();
         $usuario->first_name = $request->first_name;
         $usuario->last_name = $request->last_name;
-        $usuario->birthday = $request->birthday;
+        $usuario->birthdate = $request->birthdate;
         $usuario->email = $request->email;
         $usuario->twitter = $request->twitter;
         $usuario->password = bcrypt($request->password);
@@ -107,7 +107,7 @@ class UserController extends Controller
         $usuario = User::find($id);
         $usuario->first_name = $request->first_name;
         $usuario->last_name = $request->last_name;
-        $usuario->birthday = $request->birthday;
+        $usuario->birthdate = $request->birthdate;
         $usuario->email = $request->email;
         $usuario->twitter = $request->twitter;
         $usuario->remember_token = str_random(10);

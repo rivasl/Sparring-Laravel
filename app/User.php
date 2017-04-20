@@ -18,6 +18,7 @@ class User extends Authenticatable
         'first_name', 'last_name', 'birthdate', 'email', 'twitter', 'password',
     ];
 
+
     /**
      * The attributes that should be hidden for arrays.
      *
@@ -27,9 +28,16 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+
     public function getFullNameAttribute(){
         return $this->first_name . ' ' . $this->last_name;
     }
+
+
+    public function getAgeAttribute(){
+        return \Carbon\Carbon::parse($this->birthdate)->age;
+    }
+
 
     // Relación
     public function vehicles()
