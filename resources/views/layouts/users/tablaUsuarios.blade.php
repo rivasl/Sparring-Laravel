@@ -18,6 +18,7 @@
 					<tr>
 						<th>Id</th>
 						<th>Nombre</th>
+						<th>Edad</th>
 						<th>Email</th>
 						<th>Twitter</th>
 						<th>Acciones</th>
@@ -27,7 +28,8 @@
 					@foreach($users as $user)
 						<tr>
 							<td>{{ $user->id }}</td>
-							<td>{{ $user->FullName.$user->Age }}</td>
+							<td>{{ $user->FullName }}</td>
+							<td>{{ $user->Age }}</td>
 							<td>{{ $user->email }}</td>
 							<td>{{ $user->twitter }}</td>
 							<td>
