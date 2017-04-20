@@ -18,8 +18,10 @@ class CreateVehiclesTable extends Migration
             $table->string('brand');
             $table->string('model');
             $table->string('plate');
-            $table->string('owner_id');
+            $table->unsignedInteger('owner_id');
             $table->timestamps();
+
+            $table->foreign('owner_id')->references('id')->on('users');
         });
     }
 

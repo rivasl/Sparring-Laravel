@@ -25,7 +25,7 @@ class Vehicle extends Model
     // Relación
     public function owner()
     {
-        return $this->belongsTo('App\User', 'foreign_key', 'id');
+        return $this->belongsTo('App\User');
     }
 
 }
