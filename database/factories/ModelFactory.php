@@ -14,7 +14,7 @@
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 $factory->define(App\User::class, function (Faker\Generator $faker) {
     static $password;
-    $faker = Faker\Factory::create('es_ES');  //inicializamos Faker en modo Español
+    $faker = Faker\Factory::create('es_VE');  //inicializamos Faker en modo Español
     return [
         'first_name' => $faker->firstName($gender = null|'male'|'female'),
         'last_name' => $faker->lastName,
